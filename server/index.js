@@ -10,8 +10,12 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/posts.js";
+
 import authRoutes from "./routes/auth.js";
 import usersRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
+import { verifyToken } from './middleware/auth.js';
 
 //configuration
 const __filename = fileURLToPath(import.meta.url);
@@ -40,11 +44,11 @@ const upload = multer({ storage });
 
 // routes with files
 app.post("/auth/register", upload.single("picture"), register);
-
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
 // routes
 app.use("/auth",authRoutes);
 app.use("/users",usersRoutes);
-
+app.use("/post",postRoutes);
 
 
 // mongoose setup
