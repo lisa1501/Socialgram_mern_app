@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import { Typography,useTheme, useMediaQuery,IconButton,InputBase, FormControl, Select, MenuItem,} from '@mui/material';
+import { Typography,useTheme, useMediaQuery,IconButton,InputBase, FormControl, Select, MenuItem,Box} from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import { Search,DarkMode, LightMode,Message, Notifications, Help, Menu} from "@mui/icons-material";
+import { Search,DarkMode, LightMode,Message, Notifications, Help, Menu, Close} from "@mui/icons-material";
 import { useDispatch } from "react-redux";
 import { setMode, setLogout } from "state";
 
@@ -19,6 +19,7 @@ const Navbar = () => {
     const dispatch = useDispatch();
     const dark = theme.palette.neutral.dark;
     const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+    const background = theme.palette.background.default;
 
     return (
         <FlexBetween>
@@ -98,6 +99,29 @@ const Navbar = () => {
             <IconButton onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}>
                 <Menu />
             </IconButton>
+        )}
+
+        {/* MOBILE NAV */}
+        {!isNonMobileScreens && isMobileMenuToggled && (
+            <Box
+                position="fixed"
+                right="0"
+                bottom="0"
+                height="100%"
+                zIndex="10"
+                maxWidth="500px"
+                minWidth="300px"
+                backgroundColor={background}
+            >
+                {/* CLOSE ICON */}
+                <Box display="flex" justifyContent="flex-end" p="1rem">
+                    <IconButton
+                        onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
+                    >
+                        <Close />
+                    </IconButton>
+                </Box>
+            </Box>
         )}
         </FlexBetween>
     )
