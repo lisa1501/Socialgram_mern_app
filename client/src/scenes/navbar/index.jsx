@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography,useTheme, useMediaQuery,IconButton,InputBase,} from '@mui/material';
+import { Typography,useTheme, useMediaQuery,IconButton,InputBase} from '@mui/material';
 import { useNavigate } from "react-router-dom";
-import { Search } from "@mui/icons-material";
+import { Search,DarkMode, LightMode,Message, Notifications, Help, Menu} from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { setMode} from "state";
 
 import FlexBetween from 'components/FlexBetween';
 
@@ -12,6 +14,9 @@ const Navbar = () => {
 
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
     const neutralLight = theme.palette.neutral.light;
+
+    const dispatch = useDispatch();
+    const dark = theme.palette.neutral.dark;
     return (
         <FlexBetween>
             {/* Navbar left side */}
@@ -46,6 +51,27 @@ const Navbar = () => {
                 )}
             </FlexBetween>
 
+            {/* Navbar right side */}
+            {/* desktop navbar  */}
+            {isNonMobileScreens ? (
+                <FlexBetween gap="2rem">
+                    <IconButton onClick={() => dispatch(setMode())}>
+                        {theme.palette.mode === "dark" ? (
+                            <DarkMode sx={{ fontSize: "25px" }} />
+                        ) : (
+                            <LightMode sx={{ color: dark, fontSize: "25px" }} />
+                        )}
+                    </IconButton>
+                    <Message sx={{ fontSize: "25px" }} />
+                    <Notifications sx={{ fontSize: "25px" }} />
+                    <Help sx={{ fontSize: "25px" }} />
+                    
+                </FlexBetween>
+            ) : (
+            <IconButton>
+                <Menu />
+            </IconButton>
+        )}
         </FlexBetween>
     )
 }
