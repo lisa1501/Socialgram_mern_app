@@ -121,6 +121,29 @@ const Navbar = () => {
                         <Close />
                     </IconButton>
                 </Box>
+
+                {/* MENU ITEMS */}
+                <FlexBetween
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    gap="3rem"
+                >
+                    <IconButton
+                    onClick={() => dispatch(setMode())}
+                    sx={{ fontSize: "25px" }}
+                    >
+                    {theme.palette.mode === "dark" ? (
+                        <DarkMode sx={{ fontSize: "25px" }} />
+                    ) : (
+                        <LightMode sx={{ color: dark, fontSize: "25px" }} />
+                    )}
+                    </IconButton>
+                    <Message sx={{ fontSize: "25px" }} />
+                    <Notifications sx={{ fontSize: "25px" }} />
+                    <Help sx={{ fontSize: "25px" }} />
+                </FlexBetween>
             </Box>
         )}
         </FlexBetween>
