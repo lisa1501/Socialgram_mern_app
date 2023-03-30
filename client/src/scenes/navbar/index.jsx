@@ -1,9 +1,10 @@
 import React from 'react';
-import { Typography,useTheme, useMediaQuery,IconButton,InputBase} from '@mui/material';
+import { useState } from 'react';
+import { Typography,useTheme, useMediaQuery,IconButton,InputBase, FormControl, Select, MenuItem,} from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { Search,DarkMode, LightMode,Message, Notifications, Help, Menu} from "@mui/icons-material";
 import { useDispatch } from "react-redux";
-import { setMode} from "state";
+import { setMode, setLogout } from "state";
 
 import FlexBetween from 'components/FlexBetween';
 
@@ -17,6 +18,8 @@ const Navbar = () => {
 
     const dispatch = useDispatch();
     const dark = theme.palette.neutral.dark;
+    const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+
     return (
         <FlexBetween>
             {/* Navbar left side */}
@@ -65,10 +68,34 @@ const Navbar = () => {
                     <Message sx={{ fontSize: "25px" }} />
                     <Notifications sx={{ fontSize: "25px" }} />
                     <Help sx={{ fontSize: "25px" }} />
+                    <FormControl variant="standard" value={"Halisa"}>
+                        <Select
+                            value={"Halisa"}
+                            sx={{
+                                backgroundColor: neutralLight,
+                                width: "150px",
+                                borderRadius: "0.25rem",
+                                p: "0.25rem 1rem",
+                                "& .MuiSvgIcon-root": {
+                                    pr: "0.25rem",
+                                    width: "3rem",
+                                },
+                                "& .MuiSelect-select:focus": {
+                                    backgroundColor: neutralLight,
+                                },
+                            }}
+                            input={<InputBase />}
+                        >
+                            <MenuItem value={"Halisa"}>
+                                <Typography>Halisa</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+                        </Select>
+                    </FormControl>
                     
                 </FlexBetween>
             ) : (
-            <IconButton>
+            <IconButton onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}>
                 <Menu />
             </IconButton>
         )}
