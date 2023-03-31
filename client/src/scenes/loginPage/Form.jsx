@@ -24,7 +24,6 @@ const registerSchema = yup.object().shape({
     picture: yup.string().required("required"),
 });
 
-
 const initialValuesRegister = {
     firstName: "",
     lastName: "",
@@ -55,8 +54,8 @@ const Form = () => {
     return (
         <Formik
             onSubmit={handleFormSubmit}
-            initialValues={initialValuesLogin}
-            validationSchema={loginSchema}
+            initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
+            validationSchema={isLogin ? loginSchema : registerSchema}
         >
             {({
                 values,
@@ -195,8 +194,27 @@ const Form = () => {
                                 "&:hover": { color: palette.primary.main },
                             }}
                         >
-                            {"Login"}
+                            {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
+
+                        <Typography
+                            onClick={() => {
+                                setPageType(isLogin ? "register" : "login");
+                                resetForm();
+                            }}
+                            sx={{
+                                textDecoration: "underline",
+                                color: palette.primary.main,
+                                "&:hover": {
+                                cursor: "pointer",
+                                color: palette.primary.light,
+                                },
+                            }}
+                            >
+                            {isLogin
+                                ? "Don't have an account? Sign Up here."
+                                : "Already have an account? Login here."}
+                        </Typography>
                     </Box>
                 </form>
             )}
