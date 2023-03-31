@@ -1,10 +1,12 @@
 import React from 'react';
+import LoginPage from 'scenes/loginPage';
 import Navbar from 'scenes/navbar';
 
 const HomePage = () => {
     return (
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
+            <LoginPage />
         </div>
     )
 }
