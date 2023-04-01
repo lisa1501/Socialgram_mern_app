@@ -65,8 +65,19 @@ const UserWidget = ({ userId, picturePath }) => {
                     <Typography>{occupation}</Typography>
                 </Box>
             </Box>
-            
+
             <Divider />
+
+            <Box>
+                <FlexBetween>
+                    <Typography>Who's viewed your profile</Typography>
+                    <Typography>{viewedProfile}</Typography>
+                </FlexBetween>
+                <FlexBetween>
+                    <Typography>Impressions of your post</Typography>
+                    <Typography>{impressions}</Typography>
+                </FlexBetween>
+            </Box>
 
         </WidgetWrapper>
     )
