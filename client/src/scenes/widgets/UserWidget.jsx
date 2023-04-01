@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import FlexBetween from 'components/FlexBetween';
 import UserImage from 'components/UserImage';
 import WidgetWrapper from 'components/WidgetWrapper';
-import { LocationOnOutlined, WorkOutlineOutlined } from "@mui/icons-material";
+import { LocationOnOutlined, WorkOutlineOutlined, EditOutlined, } from "@mui/icons-material";
 
 const UserWidget = ({ userId, picturePath }) => {
     const [user, setUser] = useState(null);
@@ -79,6 +79,39 @@ const UserWidget = ({ userId, picturePath }) => {
                 </FlexBetween>
             </Box>
 
+            <Divider />
+
+            <Box p="1rem 0">
+                <Typography >
+                    Social Profiles
+                </Typography>
+
+                <FlexBetween >
+                    <FlexBetween >
+                        <img src="../assets/twitter.png" alt="twitter" />
+                        <Box>
+                            <Typography>
+                                Twitter
+                            </Typography>
+                            <Typography>Social Network</Typography>
+                        </Box>
+                    </FlexBetween>
+                    <EditOutlined />
+                </FlexBetween>
+
+                <FlexBetween >
+                    <FlexBetween >
+                        <img src="../assets/linkedin.png" alt="linkedin" />
+                        <Box>
+                            <Typography >
+                                Linkedin
+                            </Typography>
+                            <Typography >Network Platform</Typography>
+                        </Box>
+                    </FlexBetween>
+                    <EditOutlined />
+                </FlexBetween>
+            </Box>
         </WidgetWrapper>
     )
 }
