@@ -22,7 +22,6 @@ const Navbar = () => {
     const background = theme.palette.background.default;
     const user = useSelector((state) => state.user);
     const fullName = `${user.firstName} ${user.lastName}`;
-    console.log(fullName)
 
     return (
         <FlexBetween>
