@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Divider } from "@mui/material";
 import React from 'react';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import FlexBetween from 'components/FlexBetween';
 import UserImage from 'components/UserImage';
 import WidgetWrapper from 'components/WidgetWrapper';
+import { LocationOnOutlined, WorkOutlineOutlined } from "@mui/icons-material";
 
 const UserWidget = ({ userId, picturePath }) => {
     const [user, setUser] = useState(null);
@@ -51,6 +52,21 @@ const UserWidget = ({ userId, picturePath }) => {
                     </Box>
                 </FlexBetween>
             </FlexBetween>
+
+            <Divider />
+
+            <Box>
+                <Box>
+                    <LocationOnOutlined />
+                    <Typography>{location}</Typography>
+                </Box>
+                <Box>
+                    <WorkOutlineOutlined />
+                    <Typography>{occupation}</Typography>
+                </Box>
+            </Box>
+            
+            <Divider />
 
         </WidgetWrapper>
     )
