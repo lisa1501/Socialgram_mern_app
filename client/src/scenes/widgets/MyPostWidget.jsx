@@ -6,7 +6,8 @@ import {
     Typography,
     InputBase,
     useMediaQuery,
-    Button
+    Button,
+    useTheme,
 } from "@mui/material";
 import {
     EditOutlined,
@@ -33,6 +34,9 @@ const MyPostWidget = ({ picturePath }) => {
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
     const dispatch = useDispatch();
+    const { palette } = useTheme();
+    const mediumMain = palette.neutral.mediumMain;
+    const medium = palette.neutral.medium;
 
     const handlePost = async()=>{
         const formData = new FormData();
@@ -62,10 +66,21 @@ const MyPostWidget = ({ picturePath }) => {
                     placeholder="What's on your mind..."
                     onChange={(e) => setPost(e.target.value)}
                     value={post}
+                    sx={{
+                        width: "100%",
+                        backgroundColor: palette.neutral.light,
+                        borderRadius: "2rem",
+                        padding: "1rem 2rem",
+                    }}
                 />
             </FlexBetween>
             {isImage && (
-                <Box>
+                <Box
+                    border={`1px solid ${medium}`}
+                    borderRadius="5px"
+                    mt="1rem"
+                    p="1rem"
+                >
                     <Dropzone
                         acceptedFiles=".jpg,.jpeg,.png"
                         multiple={false}
@@ -75,20 +90,25 @@ const MyPostWidget = ({ picturePath }) => {
                         <FlexBetween>
                             <Box
                                 {...getRootProps()}
+                                border={`2px dashed ${palette.primary.main}`}
+                                p="1rem"
+                                width="100%"
+                                sx={{ "&:hover": { cursor: "pointer" } }}
                             >
                                 <input {...getInputProps()} />
                                 {!image ? (
-                                <p>Add Image Here</p>
+                                    <p>Add Image Here</p>
                                 ) : (
-                                <FlexBetween>
-                                    <Typography>{image.name}</Typography>
-                                    <EditOutlined />
-                                </FlexBetween>
+                                    <FlexBetween>
+                                        <Typography>{image.name}</Typography>
+                                        <EditOutlined />
+                                    </FlexBetween>
                                 )}
                             </Box>
                             {image && (
                                 <IconButton
                                     onClick={() => setImage(null)}
+                                    sx={{ width: "15%" }}
                                 >
                                     <DeleteOutlined />
                                 </IconButton>
@@ -103,37 +123,46 @@ const MyPostWidget = ({ picturePath }) => {
 
                 <FlexBetween>
                     <FlexBetween onClick={() => setIsImage(!isImage)}>
-                        <ImageOutlined  />
-                        <Typography>
+                        <ImageOutlined sx={{ color: mediumMain }} />
+                        <Typography
+                            color={mediumMain}
+                            sx={{ "&:hover": { cursor: "pointer", color: medium } }}
+                        >
                             Image
                         </Typography>
                     </FlexBetween>
+
                     {isNonMobileScreens ? (
                         <>
                             <FlexBetween gap="0.25rem">
-                                <GifBoxOutlined  />
-                                <Typography >Clip</Typography>
+                                <GifBoxOutlined sx={{ color: mediumMain }}/>
+                                <Typography color={mediumMain}>Clip</Typography>
                             </FlexBetween>
 
                             <FlexBetween gap="0.25rem">
-                                <AttachFileOutlined  />
-                                <Typography >Attachment</Typography>
+                                <AttachFileOutlined sx={{ color: mediumMain }} />
+                                <Typography color={mediumMain}>Attachment</Typography>
                             </FlexBetween>
 
                             <FlexBetween gap="0.25rem">
-                                <MicOutlined  />
-                                <Typography >Audio</Typography>
+                                <MicOutlined sx={{ color: mediumMain }} />
+                                <Typography color={mediumMain}>Audio</Typography>
                             </FlexBetween>
                         </>
                     ) : (
                         <FlexBetween gap="0.25rem">
-                            <MoreHorizOutlined />
+                            <MoreHorizOutlined sx={{ color: mediumMain }} />
                         </FlexBetween>
                     )}
 
                     <Button
                         disabled={!post}
-                        onClick={handlePost}        
+                        onClick={handlePost}
+                        sx={{
+                            color: palette.background.alt,
+                            backgroundColor: palette.primary.main,
+                            borderRadius: "3rem",
+                        }}        
                     >
                         POST
                     </Button>
