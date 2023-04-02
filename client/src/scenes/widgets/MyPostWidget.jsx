@@ -5,11 +5,16 @@ import {
     Divider,
     Typography,
     InputBase,
+    useMediaQuery
 } from "@mui/material";
 import {
     EditOutlined,
     DeleteOutlined,
     ImageOutlined,
+    GifBoxOutlined,
+    AttachFileOutlined,
+    MicOutlined,
+    MoreHorizOutlined
 } from "@mui/icons-material";
 
 import FlexBetween from "components/FlexBetween";
@@ -21,6 +26,7 @@ const MyPostWidget = ({ picturePath }) => {
     const [post, setPost] = useState("");
     const [isImage, setIsImage] = useState(false);
     const [image, setImage] = useState(null);
+    const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
     
     return (
         <WidgetWrapper>
@@ -76,6 +82,28 @@ const MyPostWidget = ({ picturePath }) => {
                             Image
                         </Typography>
                     </FlexBetween>
+                    {isNonMobileScreens ? (
+                        <>
+                            <FlexBetween gap="0.25rem">
+                                <GifBoxOutlined  />
+                                <Typography >Clip</Typography>
+                            </FlexBetween>
+
+                            <FlexBetween gap="0.25rem">
+                                <AttachFileOutlined  />
+                                <Typography >Attachment</Typography>
+                            </FlexBetween>
+
+                            <FlexBetween gap="0.25rem">
+                                <MicOutlined  />
+                                <Typography >Audio</Typography>
+                            </FlexBetween>
+                        </>
+                    ) : (
+                        <FlexBetween gap="0.25rem">
+                            <MoreHorizOutlined />
+                        </FlexBetween>
+                    )}
                 </FlexBetween>
         </WidgetWrapper>
     );
