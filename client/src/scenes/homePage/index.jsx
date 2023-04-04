@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import UserWidget from "scenes/widgets/UserWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
+import FriendListWidget from 'scenes/widgets/FriendListWidget';
 import Navbar from 'scenes/navbar';
 
 const HomePage = () => {
@@ -28,7 +29,9 @@ const HomePage = () => {
                     >
                     <MyPostWidget picturePath={picturePath} />
                     <PostsWidget userId={_id} />
+                
                 </Box>
+                <FriendListWidget />
             </Box>
         </Box>
     )

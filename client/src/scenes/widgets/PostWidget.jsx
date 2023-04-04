@@ -25,6 +25,8 @@ const PostWidget = (
         userPicturePath,
         likes,
         comments,
+        createdAt
+
     }
 ) => {
     const [isComments, setIsComments] = useState(false);
@@ -60,11 +62,13 @@ const PostWidget = (
                 name={name}
                 subtitle={location}
                 userPicturePath={userPicturePath }
+
             />
-            
             <Typography  sx={{ mt: "1rem" }}>
+            
                 {description}
             </Typography>
+            
             {picturePath && (
                 <img
                     width="100%"
@@ -75,6 +79,8 @@ const PostWidget = (
                     
                 />
             )}
+            
+            {createdAt.slice(0, 10)}
             <FlexBetween mt="0.25rem">
                 <FlexBetween gap="1rem">
                     <FlexBetween gap="0.3rem">
