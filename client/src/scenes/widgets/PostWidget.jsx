@@ -56,6 +56,7 @@ const PostWidget = (
         <WidgetWrapper m="2rem 0"
         >            
             <UserInfo
+                friendId={postUserId}
                 name={name}
                 subtitle={location}
                 userPicturePath={userPicturePath }
