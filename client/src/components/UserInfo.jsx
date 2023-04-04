@@ -1,6 +1,8 @@
 import { Typography, useTheme } from "@mui/material";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
+import { PersonAddOutlined} from "@mui/icons-material";
+import {IconButton} from "@mui/material";
 
 const UserInfo = ({ name, subtitle, userPicturePath }) => {
 
@@ -31,6 +33,13 @@ const UserInfo = ({ name, subtitle, userPicturePath }) => {
                     </Typography>
             
             </FlexBetween>
+            <IconButton>
+                <PersonAddOutlined />
+            </IconButton>
+        
+                
+        
+            
 
         
         </FlexBetween>
