@@ -3,6 +3,7 @@ import React from 'react';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+
 import FlexBetween from 'components/FlexBetween';
 import UserImage from 'components/UserImage';
 import WidgetWrapper from 'components/WidgetWrapper';
@@ -15,6 +16,7 @@ const UserWidget = ({ userId, picturePath }) => {
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
+    
 
     const getUser = async () => {
         const response = await fetch(`http://localhost:3001/users/${userId}`, {
@@ -47,6 +49,7 @@ const UserWidget = ({ userId, picturePath }) => {
             <FlexBetween
                 gap="0.5rem"
                 pb="1.1rem"
+                
             >
                 <FlexBetween gap="1rem">
                     <UserImage image={picturePath}/>
