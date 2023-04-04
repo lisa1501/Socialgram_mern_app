@@ -17,6 +17,7 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
+    // console.log(friends)
     const isFriend = friends.find((friend) => friend._id === friendId);
     const dispatch = useDispatch();
 
@@ -57,6 +58,7 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
                     <Typography color={medium} fontSize="0.75rem">
                         {subtitle}
                     </Typography>
+                
             
             </FlexBetween>
 
