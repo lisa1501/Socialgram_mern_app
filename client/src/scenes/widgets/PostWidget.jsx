@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
-import { useNavigate } from "react-router-dom";
+
 
 import UserInfo from "components/UserInfo";
 import FlexBetween from 'components/FlexBetween';
@@ -33,7 +33,7 @@ const PostWidget = (
     const loggedInUserId = useSelector((state) => state.user._id);
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
-    const navigate = useNavigate();
+    
 
     const { palette } = useTheme();
     const main = palette.neutral.main;
