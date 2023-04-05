@@ -2,19 +2,16 @@
 import User from "../models/User.js";
 
 // Read
-export const getUser = async (req, res) => {
-    
+export const getUser = async (req,res) => {
     try{
-        const { id } = req.params;
-        
+        const {id} = req.params;
         const user = await User.findById(id);
-    
         res.status(200).json(user);
-
-    }catch(err){
-        res.status(404).json({message: err.message});
+    } catch(err){
+        res.status(404).json({error:err.message});
     }
 }
+
 
 
 export const getUserFriends = async (req, res) =>{
@@ -31,7 +28,7 @@ export const getUserFriends = async (req, res) =>{
         );
         res.status(200).json(formattedFriends);
     }catch(err){
-        res.status(404).json({message: err.message});
+        res.status(405).json({message: err.message});
     }
 }
 
@@ -60,6 +57,6 @@ export const addRemoveFriend = async (req, res) =>{
         );
         res.status(200).json(formattedFriends);
     } catch(err){
-        res.status(404).json({message: err.message});
+        res.status(406).json({message: err.message});
     }
 }
