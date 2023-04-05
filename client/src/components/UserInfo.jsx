@@ -2,7 +2,7 @@ import { Typography, useTheme } from "@mui/material";
 import FlexBetween from "./FlexBetween";
 import UserImage from "./UserImage";
 import { PersonAddOutlined,PersonRemoveOutlined} from "@mui/icons-material";
-import {IconButton} from "@mui/material";
+import {IconButton,Box} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
 import { useNavigate } from "react-router-dom";
@@ -42,7 +42,12 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
         <FlexBetween>
             <FlexBetween gap="1rem">
                 <UserImage image={userPicturePath} size="55px" />
-                
+                <Box
+          onClick={() => {
+            navigate(`/profile/${friendId}`);
+            navigate(0);
+          }}
+        >
                     <Typography
                         color={main}
                         variant="h5"
@@ -53,7 +58,7 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
                                 cursor: "pointer",
                             },
                         }}
-                        onClick={() => navigate(`/profile/${friendId}`)}
+                        // onClick={() => navigate(`/profile/${friendId}`)}
                     >
                         {name}
                     </Typography>
@@ -61,7 +66,7 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
                     <Typography color={medium} fontSize="0.75rem">
                         {subtitle}
                     </Typography>
-                
+                    </Box>
             
             </FlexBetween>
 
