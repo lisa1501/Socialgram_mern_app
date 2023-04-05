@@ -44,7 +44,7 @@ const MyPostWidget = ({ picturePath }) => {
         formData.append("userId", _id);
         formData.append("description", post);
         if (image) {
-            formData.append("picture", image);
+            // formData.append("picture", image);
             formData.append("picturePath", image.name);
         }
 

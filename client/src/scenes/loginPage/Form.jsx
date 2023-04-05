@@ -5,7 +5,8 @@ import {
     TextField,
     useMediaQuery,
     Typography,
-    useTheme
+    useTheme,
+    InputAdornment
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
@@ -13,6 +14,8 @@ import * as yup from "yup";
 import Dropzone from "react-dropzone";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { setLogin } from "state";
 import FlexBetween from "components/FlexBetween";
 
@@ -52,6 +55,8 @@ const Form = () => {
     const isLogin = pageType === "login";
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [isPasswordVisible , setIsPasswordVisible] = useState(false);
+    
     const register = async (values, onSubmitProps) => {
         // this allows us to send form info with image
         const formData = new FormData();
@@ -217,7 +222,7 @@ const Form = () => {
                         />
                         <TextField
                             label="Password"
-                            type="password"
+                            type={isPasswordVisible ? "text" : "password"}
                             onBlur={handleBlur}
                             onChange={handleChange}
                             value={values.password}
@@ -225,6 +230,14 @@ const Form = () => {
                             error={Boolean(touched.password) && Boolean(errors.password)}
                             helperText={touched.password && errors.password}
                             sx={{ gridColumn: "span 4" }}
+                            InputProps={{ 
+                                endAdornment: (
+                                  <InputAdornment position="end">
+                                    {isPasswordVisible ? <VisibilityIcon onClick={()=>setIsPasswordVisible(!isPasswordVisible)} sx={{cursor:"pointer"}}/>
+                                    : <VisibilityOffIcon onClick={()=>setIsPasswordVisible(!isPasswordVisible)} sx={{cursor:"pointer"}}/>}
+                                  </InputAdornment>
+                                )
+                              }}
                         />
                     
                     </Box>  
