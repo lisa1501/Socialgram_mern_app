@@ -5,9 +5,10 @@ import { PersonAddOutlined,PersonRemoveOutlined} from "@mui/icons-material";
 import {IconButton} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setFriends } from "state";
+import { useNavigate } from "react-router-dom";
 
 const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
-
+    const navigate = useNavigate();
     const { palette } = useTheme();
     const main = palette.neutral.main;
     const medium = palette.neutral.medium;
@@ -19,6 +20,7 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
     const friends = useSelector((state) => state.user.friends);
     // console.log(friends)
     const isFriend = friends.find((friend) => friend._id === friendId);
+
     const dispatch = useDispatch();
 
     const patchFriend = async () => {
@@ -51,6 +53,7 @@ const UserInfo = ({friendId, name, subtitle, userPicturePath }) => {
                                 cursor: "pointer",
                             },
                         }}
+                        onClick={() => navigate(`/profile/${friendId}`)}
                     >
                         {name}
                     </Typography>

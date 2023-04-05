@@ -8,6 +8,7 @@ import HomePage from "scenes/homePage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
 import { themeSettings } from "./theme";
+import Navbar from "scenes/navbar";
 
 function App() {
     const mode = useSelector((state) => state.mode);
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/" element={<LoginPage />} />
                         <Route path="/home" element={isAuth ? <HomePage /> : <Navigate to="/" />} />
                         <Route path="/profile/:userId" element={isAuth ? <ProfilePage /> :<Navigate to="/" />} />
+                        <Route path="/navbar" element={<Navbar />} />
                     </Routes>
                 </ThemeProvider>
             </BrowserRouter>

@@ -8,6 +8,7 @@ import FlexBetween from 'components/FlexBetween';
 import UserImage from 'components/UserImage';
 import WidgetWrapper from 'components/WidgetWrapper';
 import { LocationOnOutlined, WorkOutlineOutlined, EditOutlined,ManageAccountsOutlined } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const UserWidget = ({ userId, picturePath }) => {
     const [user, setUser] = useState(null);
@@ -16,7 +17,7 @@ const UserWidget = ({ userId, picturePath }) => {
     const dark = palette.neutral.dark;
     const medium = palette.neutral.medium;
     const main = palette.neutral.main;
-    
+    const navigate = useNavigate()
 
     const getUser = async () => {
         const response = await fetch(`http://localhost:3001/users/${userId}`, {
@@ -49,7 +50,7 @@ const UserWidget = ({ userId, picturePath }) => {
             <FlexBetween
                 gap="0.5rem"
                 pb="1.1rem"
-                
+                onClick={() => navigate(`/profile/${userId}`)}
             >
                 <FlexBetween gap="1rem">
                     <UserImage image={picturePath}/>
