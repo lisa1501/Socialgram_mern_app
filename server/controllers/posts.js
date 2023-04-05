@@ -23,7 +23,7 @@ export const createPost = async (req, res ) => {
         const post = await Post.find();
         res.status(201).json(post);
     }catch(err){
-        res.status(401).json({message: err.message});
+        res.status(407).json({message: err.message});
     }
 };
 // Read
@@ -33,7 +33,7 @@ export const getFeedPosts = async (req, res) => {
         
         res.status(200).json(post);
     } catch (err) {
-        res.status(404).json({ message: err.message });
+        res.status(408).json({ message: err.message });
     }
 };
 
@@ -44,7 +44,7 @@ export const getUserPosts = async (req, res) => {
         console.log(post)
         res.status(200).json(post);
     } catch (err) {
-        res.status(402).json({ message: err.message });
+        res.status(409).json({ message: err.message });
     }
 };
 
@@ -70,7 +70,7 @@ export const likePost = async (req, res) => {
     
         res.status(200).json(updatedPost);
     } catch (err) {
-        res.status(403).json({ message: err.message });
+        res.status(410).json({ message: err.message });
     }
 };
 
@@ -87,10 +87,25 @@ export const postComment = async(req,res) => {
         const updatedPost = await Post.findByIdAndUpdate(postId , {comments:post.comments},{new:true});
         res.status(200).json(updatedPost);
     } catch (err) {
-        res.status(410).json({error:err.message});
+        res.status(411).json({error:err.message});
     }
 }
 
+export const deleteComment = async(req,res) => {
+    try {
+        const {postId} = req.params;
+        const {comment} = req.body;
+        const post = await Post.findById(postId);
+        console.log(post);
+        const updatedPost = post.comments.filter((item,i)=>{
+            return item.comment !== comment;
+        });    
+        const updatedNewPost = await Post.findByIdAndUpdate(postId , {comments:updatedPost},{new:true});
+        res.status(200).json(updatedNewPost);
+    } catch (err) {
+        res.status(412).json({error:err.message});
+    }
+}
 
 
 
