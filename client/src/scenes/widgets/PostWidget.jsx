@@ -6,6 +6,7 @@ import {
     ShareOutlined,
     FavoriteOutlined 
 } from "@mui/icons-material";
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
@@ -34,10 +35,12 @@ const PostWidget = (
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
+    // const picturePath = useSelector((state)=> state.user.picturePath);
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
-    
+  
     const { palette } = useTheme();
+    const main = palette.neutral.main;
     const primary = palette.primary.main;
 
     const patchLike = async () => {
