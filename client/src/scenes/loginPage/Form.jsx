@@ -5,7 +5,7 @@ import {
     TextField,
     useMediaQuery,
     Typography,
-    useTheme,
+    useTheme
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
@@ -52,7 +52,6 @@ const Form = () => {
     const isLogin = pageType === "login";
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
     const register = async (values, onSubmitProps) => {
         // this allows us to send form info with image
         const formData = new FormData();
