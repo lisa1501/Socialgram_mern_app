@@ -18,6 +18,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { setLogin } from "state";
 import FlexBetween from "components/FlexBetween";
+import Alert from "@mui/material/Alert"
 
 const registerSchema = yup.object().shape({
     firstName: yup.string().required("required"),
@@ -257,6 +258,9 @@ const Form = () => {
                         >
                             {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
+                        <Alert message="success">
+                            Email: test@example.com , Password: password
+                        </Alert>
 
                         <Typography
                             onClick={() => {
