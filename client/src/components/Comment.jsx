@@ -19,7 +19,7 @@ function Comment({userId,comment,postId}) {
     const main = palette.neutral.main;
 
     const getCommentUser = async() => {
-        const response = await fetch(`http://localhost:3001/users/${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/${userId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` },
         });
@@ -28,7 +28,7 @@ function Comment({userId,comment,postId}) {
     };
 
     const handleDeleteComment = async() => {
-        const response = await fetch(`http://localhost:3001/posts/${postId}/${userId}/comment/delete`,{
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts/${postId}/${userId}/comment/delete`,{
           method:"PATCH",
           headers: {
             Authorization: `Bearer ${token}`,
