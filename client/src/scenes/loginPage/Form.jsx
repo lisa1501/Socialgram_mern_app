@@ -28,6 +28,7 @@ const registerSchema = yup.object().shape({
     location: yup.string().required("required"),
     occupation: yup.string().required("required"),
     picture: yup.string().required("required"),
+    
 });
 
 const initialValuesRegister = {
@@ -57,6 +58,7 @@ const Form = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isPasswordVisible , setIsPasswordVisible] = useState(false);
+    const [image , setImage] = useState("");
     
     const register = async (values, onSubmitProps) => {
         // this allows us to send form info with image
@@ -64,8 +66,12 @@ const Form = () => {
         for (let value in values) {
             formData.append(value, values[value]);
         }
-        formData.append("picturePath", values.picture.name);
+        if(image){
+            const base64 = await convertTobase64(image);
+            formData.append("picturePath", base64);
     
+        }
+        
         const savedUserResponse = await fetch(
             `${process.env.REACT_APP_SERVER_URL}/auth/register`,
            
@@ -81,6 +87,19 @@ const Form = () => {
             setPageType("login");
         }
     };
+    const convertTobase64 = (file) => {
+        return new Promise((resolve, reject)=>{
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+    
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          };
+          fileReader.onerror = (error) => {
+            reject(error);
+          };
+        })
+      };
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
@@ -260,7 +279,7 @@ const Form = () => {
                             {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
                         <Alert message="success">
-                            Email: test@example.com , Password: password
+                            Email: test@example.com , Password: password ---- Thank you for your patience .
                         </Alert>
 
                         <Typography

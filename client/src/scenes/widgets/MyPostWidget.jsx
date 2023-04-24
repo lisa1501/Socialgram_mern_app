@@ -44,8 +44,9 @@ const MyPostWidget = ({ picturePath }) => {
         formData.append("userId", _id);
         formData.append("description", post);
         if (image) {
+            const base64 = await convertTobase64(image);
             // formData.append("picture", image);
-            formData.append("picturePath", image.name);
+            formData.append("picturePath", base64);
         }
 
         const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/posts`, {
@@ -58,6 +59,20 @@ const MyPostWidget = ({ picturePath }) => {
             setImage(null);
             setPost("");
     }
+
+    const convertTobase64 = (file) => {
+      return new Promise((resolve, reject)=>{
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+        };
+        fileReader.onerror = (error) => {
+          reject(error);
+        };
+      })
+    };
     
     return (
         <WidgetWrapper>
