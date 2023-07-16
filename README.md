@@ -13,7 +13,9 @@
  ```bash
     npm run dev
 ```
- - in your client terminal, run npm start
+ - in your client terminal, run
+ ```npm start
+ ```
 - This project uses mongoose. Please install mongoose to your computer if you don't have it.
 
 - Next create a .env file in server. It should contain the following information.
