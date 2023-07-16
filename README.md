@@ -9,7 +9,10 @@
   - `cd server`
   - `nvm use 18.13.0`
   - `npm install`
- - in your server terminal, run npm run dev
+ - in your server terminal, run
+ ```bash
+    npm run dev
+```
  - in your client terminal, run npm start
 - This project uses mongoose. Please install mongoose to your computer if you don't have it.
 
