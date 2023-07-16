@@ -14,7 +14,8 @@
     npm run dev
 ```
  - in your client terminal, run
- ```npm start
+ ```bash
+    npm start
  ```
 - This project uses mongoose. Please install mongoose to your computer if you don't have it.
 
