@@ -279,7 +279,9 @@ const Form = () => {
                             {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
                         <Alert message="success">
-                            Email: test@example.com , Password: password ---- Thank you for your patience .
+                            <li>Email: test@example.com</li>
+                            <li>Password: password</li>
+                            Thank you for your patience .
                         </Alert>
 
                         <Typography
