@@ -66,15 +66,12 @@ const Form = () => {
         for (let value in values) {
             formData.append(value, values[value]);
         }
-        if(image){
-            const base64 = await convertTobase64(image);
-            formData.append("picturePath", base64);
-    
-        }
+        formData.append("picturePath", values.picture.name);
+
         
         const savedUserResponse = await fetch(
             `${process.env.REACT_APP_SERVER_URL}/auth/register`,
-           
+        
             {
                 method: "POST",
                 body: formData,
@@ -87,19 +84,7 @@ const Form = () => {
             setPageType("login");
         }
     };
-    const convertTobase64 = (file) => {
-        return new Promise((resolve, reject)=>{
-          const fileReader = new FileReader();
-          fileReader.readAsDataURL(file);
     
-          fileReader.onload = () => {
-            resolve(fileReader.result);
-          };
-          fileReader.onerror = (error) => {
-            reject(error);
-          };
-        })
-      };
 
     const login = async (values, onSubmitProps) => {
         const loggedInResponse = await fetch(`${process.env.REACT_APP_SERVER_URL}/auth/login`, {
