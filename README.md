@@ -1,11 +1,8 @@
 # Socialgram
 ## Installation
 <br>
-
 [Click here to see it in action!](https://halisa-socialgram-app.netlify.app/)
-
 <br>
-
 ## Installation
 
 - `git clone https://github.com/lisa1501/Socialgram_mern_app`
