@@ -10,7 +10,6 @@
 
 - `git clone https://github.com/lisa1501/Socialgram_mern_app`
 - `cd Socialgram_mern_app`
-- `git clone <[this_url]()> && cd <>`
 - install npm on client and server. do the cd on 2 separate terminals
   - `cd client`
   - `nvm use 18.13.0`
